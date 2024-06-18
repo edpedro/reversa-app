@@ -1,62 +1,8 @@
-import { useState, useCallback, useEffect } from 'react';
 import { Box, Heading, Center, Pressable, HStack, Divider } from 'native-base';
-import * as SplashScreen from 'expo-splash-screen';
-import {
-  Inter_400Regular,
-  Inter_600SemiBold,
-  Inter_700Bold,
-} from '@expo-google-fonts/inter';
-import * as Font from 'expo-font';
-import { navigate } from '../../routes/stack/Navigate';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function App() {
-  const [isReady, setIsReady] = useState<boolean>(false);
-
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await Font.loadAsync({
-          Inter_400Regular,
-          Inter_600SemiBold,
-          Inter_700Bold,
-        });
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setIsReady(true);
-      }
-    }
-
-    prepare();
-  }, []);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (isReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [isReady]);
-
-  if (!isReady) {
-    return null;
-  }
-
-  const handlePress = (name: string) => {
-    navigate({ name: name });
-  };
-
+export default function NewProtocol() {
   return (
-    <Box
-      onLayout={onLayoutRootView}
-      flex={1}
-      w="100%"
-      h="100%"
-      flexDirection="column"
-      bg="white"
-      p="10"
-    >
+    <Box flex={1} w="100%" h="100%" flexDirection="column" bg="white" p="10">
       <Center w="100%">
         <Heading
           p="5"
@@ -65,9 +11,9 @@ export default function App() {
             fontSize: 22,
           }}
         >
-          Menu
+          Novo Protocolo
         </Heading>
-        <Pressable onPress={() => handlePress('NewProtocol')}>
+        <Pressable onPress={() => console.log('Novo protocolo')}>
           {({ isPressed }) => (
             <>
               <Box
