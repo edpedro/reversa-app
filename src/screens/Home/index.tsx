@@ -117,7 +117,7 @@ export default function App() {
                         </>
                     )}
                 </Pressable>
-                <Pressable onPress={() => console.log('Listar protocolo')}>
+                <Pressable onPress={() => handlePress('ListProtocols')}>
                     {({ isPressed }) => (
                         <>
                             <Box
