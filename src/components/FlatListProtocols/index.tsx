@@ -1,21 +1,31 @@
-import { useState, useCallback, useEffect } from 'react';
-import { Box, Heading, Center, Pressable, HStack, Divider } from 'native-base';
+import {
+    Box,
+    Heading,
+    Center,
+    Pressable,
+    HStack,
+    Divider,
+    Text,
+} from 'native-base';
 import { navigate } from '../../routes/stack/Navigate';
+import { NameProtocolData } from '../../contexts/types';
 
-interface ProtocolsData {
-    id: string;
-    protocol: string;
-}
-
-export default function FlatListProtocols({ data }: { data: ProtocolsData }) {
-    const handlePress = () => {
-        navigate({ name: 'ListCodigos' });
+export default function FlatListProtocols({
+    data,
+}: {
+    data: NameProtocolData;
+}) {
+    const handlePress = (id: string, name: string) => {
+        navigate({
+            name: 'ListCodigos',
+            params: { idNameProtocol: id, nameProtocol: name },
+        });
     };
 
     return (
         <Box flex={1} w="100%" h="100%" flexDirection="column" bg="white">
             <Center w="100%">
-                <Pressable onPress={() => handlePress()}>
+                <Pressable onPress={() => handlePress(data.id, data.name)}>
                     {({ isPressed }) => (
                         <>
                             <Box
@@ -48,17 +58,17 @@ export default function FlatListProtocols({ data }: { data: ProtocolsData }) {
                                         shadow="3"
                                         alignItems="center"
                                     >
-                                        <Heading
+                                        <Text
                                             fontWeight="300"
                                             color="gray.700"
-                                            mt="3"
+                                            mt="4"
                                             style={{
                                                 fontFamily: 'Inter_400Regular',
                                                 fontSize: 18,
                                             }}
                                         >
-                                            {data.protocol}
-                                        </Heading>
+                                            {data.name}
+                                        </Text>
                                     </Box>
                                 </HStack>
                             </Box>

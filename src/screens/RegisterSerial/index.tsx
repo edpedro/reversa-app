@@ -13,37 +13,47 @@ import {
 } from 'native-base';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useProtocol } from '../../contexts/hooks/useProtocols';
-import { NameProtocolData, ProtocolData } from '../../contexts/types';
+import {
+    ProtocolData,
+    ProtocolPayload,
+    SaveProtocol,
+} from '../../contexts/types';
 import debounce from 'lodash/debounce';
 import Toast from 'react-native-toast-message';
 import { RouteProp } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+    NativeStackNavigationProp,
+    createNativeStackNavigator,
+} from '@react-navigation/native-stack';
 
-type ParamsListSerial = {
-    Serial: {
-        type: string;
+type ParamsListRegisterSerial = {
+    RegisterSerial: {
+        IdProtocol: string;
+        name: string;
     };
 };
 
-type SerialRouteProp = RouteProp<ParamsListSerial, 'Serial'>;
+type RegisterSerialRouteProp = RouteProp<
+    ParamsListRegisterSerial,
+    'RegisterSerial'
+>;
 
-type SerialScreenNavigationProp = NativeStackNavigationProp<
-    ParamsListSerial,
-    'Serial'
+type RegisterSerialScreenNavigationProp = NativeStackNavigationProp<
+    ParamsListRegisterSerial,
+    'RegisterSerial'
 >;
 
 type Props = {
-    route: SerialRouteProp;
-    navigation: SerialScreenNavigationProp;
+    route: RegisterSerialRouteProp;
+    navigation: RegisterSerialScreenNavigationProp;
 };
 
-const Serial: React.FC<Props> = ({ route }) => {
-    const { removeSerial, searchSerial, filteredData, setFilteredData } =
+const RegisterSerial: React.FC<Props> = ({ route }) => {
+    const { registerProtocol, filteredData, setFilteredData, searchSerial } =
         useProtocol();
 
-    const { type } = route.params;
+    const { IdProtocol } = route.params;
 
-    const [nameProtocol, setNameProtocol] = useState<NameProtocolData>();
     const [query, setQuery] = useState('');
 
     const handleSearch = useCallback(
@@ -53,7 +63,7 @@ const Serial: React.FC<Props> = ({ route }) => {
             if (text === '') {
                 setFilteredData(undefined);
             } else {
-                searchSerial(text.trim(), 'search');
+                searchSerial(text.trim(), IdProtocol);
             }
         },
         [searchSerial],
@@ -70,31 +80,21 @@ const Serial: React.FC<Props> = ({ route }) => {
         };
     }, [debouncedHandleSearch]);
 
-    useEffect(() => {
-        return () => {
-            setFilteredData(undefined);
+    function handleEmpty(result: any, id: string) {
+        let data: ProtocolPayload = {
+            protocols: [
+                {
+                    caixa: result.caixa || 1,
+                    codigo: result.codigo || '',
+                    serial: result.serial || '',
+                    nameProtocols_id: id,
+                },
+            ],
         };
-    }, []);
 
-    function handleEmpty(type: string, data: ProtocolData) {
-        if (type === 'Deletar') {
-            if (data.nameProtocols) {
-                removeSerial(data.serial, type);
-                setFilteredData(undefined);
-                setNameProtocol(undefined);
-                setQuery('');
-            } else {
-                Toast.show({
-                    type: 'error',
-                    text1: 'Serial',
-                    text2: 'Serial não consta em protocolo',
-                });
-            }
-        } else {
-            setFilteredData(undefined);
-            setNameProtocol(undefined);
-            setQuery('');
-        }
+        registerProtocol(data);
+        setFilteredData(undefined);
+        setQuery('');
     }
 
     return (
@@ -284,6 +284,7 @@ const Serial: React.FC<Props> = ({ route }) => {
                                     </Box>
                                 </HStack>
                             )}
+
                             <Box w="100%" alignItems="center">
                                 <HStack
                                     w="100%"
@@ -293,17 +294,16 @@ const Serial: React.FC<Props> = ({ route }) => {
                                 >
                                     <TouchableOpacity
                                         onPress={() =>
-                                            handleEmpty(type, filteredData)
+                                            handleEmpty(
+                                                filteredData,
+                                                IdProtocol,
+                                            )
                                         }
                                     >
                                         <AntDesign
                                             name="checkcircle"
                                             size={50}
-                                            color={
-                                                type === 'Consultar'
-                                                    ? 'green'
-                                                    : 'red'
-                                            }
+                                            color="green"
                                         />
                                     </TouchableOpacity>
                                 </HStack>
@@ -316,4 +316,4 @@ const Serial: React.FC<Props> = ({ route }) => {
     );
 };
 
-export default Serial;
+export default RegisterSerial;

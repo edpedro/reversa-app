@@ -1,23 +1,11 @@
+import React from 'react';
 import { Box, Heading, Center, FlatList } from 'native-base';
-
 import FlatListProtocols from '../../components/FlatListProtocols';
-
-const data = [
-    {
-        id: '1',
-        protocol: 'correios',
-    },
-    {
-        id: '2',
-        protocol: 'correios 2024',
-    },
-    {
-        id: '3',
-        protocol: 'correios caroba 2024',
-    },
-];
+import { useProtocol } from '../../contexts/hooks/useProtocols';
 
 export default function ListProtocols() {
+    const { nameProtocolData } = useProtocol();
+
     return (
         <Box
             flex={1}
@@ -25,9 +13,9 @@ export default function ListProtocols() {
             h="100%"
             flexDirection="column"
             bg="white"
-            pt="10"
+            mb="10"
         >
-            <Center w="100%">
+            <Center w="98%">
                 <Heading
                     p="5"
                     style={{
@@ -37,11 +25,19 @@ export default function ListProtocols() {
                 >
                     Lista Protocolos
                 </Heading>
-                <FlatList
-                    data={data}
-                    renderItem={({ item }) => <FlatListProtocols data={item} />}
-                    keyExtractor={(item) => item.id}
-                />
+                {nameProtocolData && nameProtocolData.length > 0 ? (
+                    <FlatList
+                        data={nameProtocolData}
+                        renderItem={({ item }) => (
+                            <FlatListProtocols data={item} />
+                        )}
+                        keyExtractor={(item) => item.id}
+                    />
+                ) : (
+                    <Heading p="5" fontSize={18} color="gray.500">
+                        Nenhum protocolo encontrado.
+                    </Heading>
+                )}
             </Center>
         </Box>
     );

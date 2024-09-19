@@ -1,0 +1,162 @@
+{
+  "nameProtocols": [
+    {
+      "id": "123",
+      "name": "correios-07-07-asdasdas-dasdasdasd-asd",
+      "date": "09/07/2024",
+      "user": "thiago"
+    },
+    {
+      "id": "124",
+      "name": "caroba-07-07",
+      "date": "09/07/2024",
+      "user": "thiago"
+    },
+    {
+      "id": "125",
+      "name": "rapido-latina-07-07",
+      "date": "09/07/2024",
+      "user": "thiago"
+    },
+    {
+      "id": "c0ff",
+      "user": "eduardo",
+      "date": "2024-07-15T00:20:48.809Z",
+      "name": "Rapido-rapana-2024"
+    },
+    {
+      "id": "91f2",
+      "user": "asdasdasda",
+      "date": "2024-07-15T22:38:03.205Z",
+      "name": "sdasdasd"
+    },
+    {
+      "id": "7bf2",
+      "user": "asdasdasdasd",
+      "date": "2024-07-15T22:38:09.120Z",
+      "name": "asdasdasdasd"
+    },
+    {
+      "id": "66cc",
+      "user": "eduardo",
+      "date": "2024-07-18T00:27:07.949Z",
+      "name": "teste"
+    }
+  ],
+  "protocols": [
+    {
+      "id": "1",
+      "idProtocols": "123",
+      "codigo": "0192-0450-0",
+      "serial": "asdasdasdas1",
+      "caixa": "1"
+    },
+    {
+      "id": "3",
+      "idProtocols": "123",
+      "codigo": "0192-0432-1",
+      "serial": "asdasdasdas3",
+      "caixa": "2"
+    },
+    {
+      "id": "4",
+      "idProtocols": "123",
+      "codigo": "0192-0446-6",
+      "serial": "asdasdasdas4",
+      "caixa": "3"
+    },
+    {
+      "id": "5",
+      "idProtocols": "123",
+      "codigo": "0192-0446-6",
+      "serial": "asdasdasdas5",
+      "caixa": "3"
+    },
+    {
+      "id": "9",
+      "idProtocols": "124",
+      "codigo": "0192-0449-9",
+      "serial": "asdasd5614asda77",
+      "caixa": "1"
+    },
+    {
+      "id": "11",
+      "idProtocols": "124",
+      "codigo": "0192-0432-2",
+      "serial": "asdasd5614asda5",
+      "caixa": "3"
+    },
+    {
+      "id": "16",
+      "idProtocols": "125",
+      "codigo": "0192-9999-9",
+      "serial": "234lkjhnkj2347",
+      "caixa": "1"
+    },
+    {
+      "id": "2e66",
+      "data": [
+        {
+          "serial": "serial-1",
+          "id": "",
+          "codigo": "0192-1-9",
+          "deposit": "",
+          "center": "",
+          "caixa": 1,
+          "idProtocols": "66cc"
+        },
+        {
+          "serial": "serial-2",
+          "id": "",
+          "codigo": "0192-2-9",
+          "deposit": "",
+          "center": "",
+          "caixa": 2,
+          "idProtocols": "66cc"
+        }
+      ]
+    }
+  ],
+  "baseSerial": [
+    {
+      "id": "1",
+      "codigo": "0192-1-9",
+      "serial": "serial-1",
+      "description": "modem 1",
+      "deposit": "RPAR",
+      "center": "V1"
+    },
+    {
+      "id": "2",
+      "codigo": "0192-2-9",
+      "serial": "serial-2",
+      "description": "modem 2",
+      "deposit": "RPAR",
+      "center": "V2"
+    },
+    {
+      "id": "3",
+      "codigo": "0192-3-9",
+      "serial": "serial-3",
+      "description": "modem 3",
+      "deposit": "RPAR",
+      "center": "V3"
+    },
+    {
+      "id": "4",
+      "codigo": "0192-4-9",
+      "serial": "serial-4",
+      "description": "modem 4",
+      "deposit": "RPAR",
+      "center": "V4"
+    },
+    {
+      "id": "5",
+      "codigo": "0192-5-9",
+      "serial": "serial-5",
+      "description": "modem 5",
+      "deposit": "RPAR",
+      "center": "V5"
+    }
+  ]
+}

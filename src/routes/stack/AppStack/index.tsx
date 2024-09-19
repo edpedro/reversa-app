@@ -2,11 +2,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from '../../../screens/Home';
 import NewProtocol from '../../../screens/NewProtocol';
-import NewSerial from '../../../screens/Serial';
+import RegisterSerial from '../../../screens/RegisterSerial';
 import ListProtocols from '../../../screens/ListProtocols';
 import Protocols from '../../../screens/Protocols';
 import ListSerial from '../../../screens/ListSerial';
 import ListCodigos from '../../../screens/ListCodigos';
+import Serial from '../../../screens/Serial';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -25,8 +26,8 @@ export default function AppStack() {
             />
             <Screen
                 options={{ headerShown: false, animation: 'none' }}
-                name="NewSerial"
-                component={NewSerial}
+                name="RegisterSerial"
+                component={RegisterSerial}
             />
             <Screen
                 options={{ headerShown: false, animation: 'none' }}
@@ -47,6 +48,11 @@ export default function AppStack() {
                 options={{ headerShown: false, animation: 'none' }}
                 name="Protocols"
                 component={Protocols}
+            />
+            <Screen
+                options={{ headerShown: false, animation: 'none' }}
+                name="Serial"
+                component={Serial}
             />
         </Navigator>
     );

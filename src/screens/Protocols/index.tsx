@@ -28,9 +28,9 @@ const data = [
 ];
 
 export default function Protocols() {
-    const handlePress = (name: string) => {
-        navigate({ name: name });
-    };
+    // const handlePress = (name: string) => {
+    //     navigate({ name: name });
+    // };
 
     return (
         <Box
